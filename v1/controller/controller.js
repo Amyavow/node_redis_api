@@ -2,11 +2,12 @@ const redis = require("redis");
 const client = redis.createClient();
 
 exports.createStudent = function(req, res, next) {
-	var id = req.body.id;
-	var	name = req.body.name;
-	var	score = req.body.score;
+	console.log(req.body);
+	let id = req.body.id,
+		name = req.body.name,
+		score = req.body.score;
 
-	client.hmset(1, ["name", "ace", "score", 100], function(err, reply) {
+	client.hmset(id, ["name", name, "score", score], function(err, reply) {
 		if (err) {
 			return next(new Error(err));
 		} else {
